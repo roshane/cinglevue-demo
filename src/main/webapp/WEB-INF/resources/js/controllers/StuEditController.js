@@ -3,22 +3,63 @@
  */
 (function () {
     angular.module('demoApp')
-        .controller('studentEditController', ['$http', '$routeParams', 'csResponse', studentEditcontroller]);
+        .controller('studentEditController', ['$http', '$location', 'csResponse', studentEditController]);
 
-    function studentEditcontroller($http, $routeParams, csResponse) {
+    function studentEditController($http, $location, csResponse) {
         console.log('initializing student edit controller');
         var self = this;
-        self.currentStudent = csResponse.data.data;
-        console.log(self.currentStudent);
+        self.isNewEntry = false;
+        if (csResponse) {
+            self.currentStudent = csResponse.data.data;
+            self.isNewEntry = false;
+        } else {
+            self.isNewEntry = true;
+            self.currentStudent = {
+                firstName: "",
+                lastName: "",
+                address: {
+                    number: "",
+                    street: "",
+                    city: ""
+                },
+                regNumber: ""
+            }
+        }
 
         self.saveChanges = function () {
             console.log(self.currentStudent);
-            $http.put('api/students', self.currentStudent)
-                .then(function (response) {
-                    console.log(response);
-                }, function (err) {
-                    console.error(err);
-                })
+            if (!self.isNewEntry) {
+                $http.put('api/students', self.currentStudent)
+                    .then(function (response) {
+                        console.log(response);
+                        $location.path('view/' + self.currentStudent.regNumber);
+                    }, function (err) {
+                        console.error(err);
+                    });
+            } else {
+                if (self.isValidEntry()) {
+                    $http.post('api/students', self.currentStudent)
+                        .then(function (response) {
+                            console.log(response);
+                            $location.path('view/' + response.data.data.regNumber);
+                        }, function (err) {
+                            console.error(err);
+                        });
+                } else {
+                    alert('Please fill all required fields');
+                }
+            }
+        };
+
+        self.isValidEntry = function () {
+
+            var keys = Object.keys(self.currentStudent);
+            for (var i = 0; i < keys.length; i++) {
+                if (self.currentStudent[keys[i]].length == 0) {
+                    return false;
+                }
+            }
+            return true;
         };
     }
 })();

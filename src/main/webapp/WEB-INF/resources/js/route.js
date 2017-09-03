@@ -21,7 +21,22 @@
                 }
             }
         }).when('/view/:regNumber', {
-            templateUrl: '/resources/templates/studentView.html'
+            templateUrl: '/resources/templates/studentView.html',
+            controller: 'studentViewController as $ctrl',
+            resolve: {
+                csResponse: function ($http, $route) {
+                    console.log('resolving ', $route.current.params.regNumber);
+                    return $http.get('api/students/' + $route.current.params.regNumber);
+                }
+            }
+        }).when('/new', {
+            templateUrl: '/resources/templates/studentEdit.html',
+            controller: 'studentEditController as $ctrl',
+            resolve: {
+                csResponse: function () {
+                    return null;
+                }
+            }
         }).otherwise('/');
 
         $locationProvider.html5Mode(true);

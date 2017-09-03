@@ -9,13 +9,21 @@
     function studentListController($http) {
         console.info('initializing studentController');
         var self = this;
-        self.students = [];
+        self.students = null;
         self.error = null;
         self.deleteItem = null;
+        self.searchTxt = null;
 
         self.loadStudents = function () {
             console.log('loading students');
-            $http.get('api/students/')
+            var url = '';
+            if (self.isNullOrEmpty(self.searchTxt)) {
+                url = 'api/students/';
+            } else {
+                url = 'api/students/firstNameLike/' + self.searchTxt;
+            }
+
+            $http.get(url)
                 .then(function (response) {
                     self.students = response.data.data.content;
                 }, function (err) {
@@ -36,7 +44,6 @@
             if (self.deleteItem) {
                 $http.delete('api/students/' + self.deleteItem.regNumber)
                     .then(function (response) {
-                        alert('Successfully deleted student');
                         if (self.students.length) {
                             var i = self.students.indexOf(self.deleteItem);
                             self.students.splice(i, 1);
@@ -50,8 +57,12 @@
 
         self.clearData = function () {
             self.deleteItem = null;
-            self.students = [];
+            self.students = null;
             self.error = null;
-        }
+        };
+
+        self.isNullOrEmpty = function (str) {
+            return str == null || str.length == 0;
+        };
     }
 })();

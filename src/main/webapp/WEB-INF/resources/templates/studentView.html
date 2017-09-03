@@ -1,3 +1,20 @@
 <div>
-    <pre>student view page</pre>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">Student:&nbsp;{{$ctrl.currentStudent.regNumber}}</h3>
+        </div>
+        <div class="panel-body">
+            <p>First Name:&nbsp;{{$ctrl.currentStudent.firstName}}</p>
+            <p>Last Name:&nbsp;{{$ctrl.currentStudent.lastName}}</p>
+            <p>
+                Address:&nbsp;
+                {{$ctrl.currentStudent.address.number}},&nbsp;
+                {{$ctrl.currentStudent.address.street}},&nbsp;
+                {{$ctrl.currentStudent.address.city}}
+            </p>
+        </div>
+        <div class="panel-footer">
+            <a ng-href="/" role="button" class="btn btn-default">Back</a>
+        </div>
+    </div>
 </div>

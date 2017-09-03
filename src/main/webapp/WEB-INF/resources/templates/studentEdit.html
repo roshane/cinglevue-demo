@@ -3,13 +3,20 @@
         <div class="form-group">
             <label for="1" class="col-md-2">Reg Number</label>
             <div class="col-md-6">
-                <input type="text" class="form-control" id="1" ng-model="$ctrl.currentStudent.regNumber">
+                <input type="text" class="form-control" id="1"
+                       ng-if="$ctrl.isNewEntry"
+                       required="required"
+                       ng-model="$ctrl.currentStudent.regNumber">
+                <input type="text" class="form-control" id="1"
+                       ng-if="!$ctrl.isNewEntry"
+                       readonly="readonly"
+                       ng-model="$ctrl.currentStudent.regNumber">
             </div>
         </div>
         <div class="form-group">
             <label for="2" class="col-md-2">First Name</label>
             <div class="col-md-6">
-                <input type="text" class="form-control" id="2" ng-model="$ctrl.currentStudent.firstName">
+                <input type="text" class="form-control" id="2" ng-model="$ctrl.currentStudent.firstName" required="required">
             </div>
         </div>
         <div class="form-group">

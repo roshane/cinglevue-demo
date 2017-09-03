@@ -27,7 +27,7 @@ public class StudentController {
 
     @GetMapping("/")
     public ResponseEntity<ApiResponse<?>> findAll(@RequestParam(required = false, defaultValue = "0") int page) {
-        PageRequest pageRequest = new PageRequest(page, 10);
+        PageRequest pageRequest = new PageRequest(page, Integer.MAX_VALUE);
         Page<Student> students = repository.findAll(pageRequest);
         return new ApiResponse.Builder<>()
                 .withData(students)
@@ -45,11 +45,13 @@ public class StudentController {
     }
 
     @GetMapping("/firstNameLike/{name}")
-    public ResponseEntity<ApiResponse<?>> findByFirstNameLike(@PathVariable String name) {
-        List<Student> students = repository.findByFirstNameLike(name);
+    public ResponseEntity<ApiResponse<?>> findByFirstNameLike(@PathVariable String name,
+                                                              @RequestParam(required = false, defaultValue = "0") int page) {
+        PageRequest pageRequest = new PageRequest(page, Integer.MAX_VALUE);
+        Page<Student> students = repository.findByFirstNameLike(name, pageRequest);
         return new ApiResponse.Builder<>()
                 .withData(students)
-                .withStatus(students.size() > 0 ? OK : NOT_FOUND)
+                .withStatus(students.getTotalElements() > 0 ? OK : NOT_FOUND)
                 .build();
     }
 
@@ -63,6 +65,15 @@ public class StudentController {
 
     @PutMapping("")
     public ResponseEntity<ApiResponse<?>> update(@RequestBody Student student) {
+        Student updated = repository.save(student);
+        return new ApiResponse.Builder<>()
+                .withStatus(CREATED)
+                .withData(updated)
+                .build();
+    }
+
+    @PostMapping("")
+    public ResponseEntity<ApiResponse<?>> save(@RequestBody Student student) {
         Student updated = repository.save(student);
         return new ApiResponse.Builder<>()
                 .withStatus(CREATED)

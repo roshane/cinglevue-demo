@@ -4,13 +4,11 @@
 
 (function(){
     angular.module('demoApp')
-        .controller('studentViewController',['$http',studentViewController]);
-    
-    function studentViewController($http,$routeParams){
+        .controller('studentViewController', ['csResponse', studentViewController]);
+
+    function studentViewController(csResponse) {
         console.log('initializing studentViewController');
         var self=this;
-        
-        
-        
+        self.currentStudent = csResponse.data.data; 
     }
 })();

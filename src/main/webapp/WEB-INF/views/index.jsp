@@ -21,7 +21,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li class="active"><a ng-href="/">Home</a></li>
-                    <li><a ng-href="edit">Add Student</a></li>
+                    <li><a ng-href="/new">Add Student</a></li>
                 </ul>
             </div>
         </div>
@@ -40,6 +40,7 @@
 <script type="text/javascript" src="/resources/js/route.js"></script>
 <script type="text/javascript" src="/resources/js/controllers/StuListController.js"></script>
 <script type="text/javascript" src="/resources/js/controllers/StuEditController.js"></script>
+<script type="text/javascript" src="/resources/js/controllers/StuViewController.js"></script>
 
 <script type="text/javascript" src="/resources/js/jquery.min.js"></script>
 <script type="text/javascript" src="/resources/js/bootstrap.min.js"></script>

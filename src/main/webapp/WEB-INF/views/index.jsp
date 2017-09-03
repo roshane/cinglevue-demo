@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <title>Student</title>
     <base href="/">
-    <link rel="stylesheet" href="/resources/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/resources/css/bootstrap-theme.min.css"/>
+    <%--<link rel="stylesheet" href="/resources/css/bootstrap.min.css"/>--%>
+    <link rel="stylesheet" href="/resources/css/bootstrap.css"/>
+    <%--<link rel="stylesheet" href="/resources/css/bootstrap-theme.min.css"/>--%>
     <link rel="stylesheet" href="/resources/css/custom.css"/>
 </head>
 <body ng-app="demoApp">

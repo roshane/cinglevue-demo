@@ -1,0 +1,45 @@
+<div>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for="1" class="col-md-2">Reg Number</label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" id="1" ng-model="$ctrl.currentStudent.regNumber">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="2" class="col-md-2">First Name</label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" id="2" ng-model="$ctrl.currentStudent.firstName">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="3" class="col-md-2">Last Name</label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" id="3" ng-model="$ctrl.currentStudent.lastName">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="4" class="col-md-2">Address Number</label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" id="4" ng-model="$ctrl.currentStudent.address.number">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="5" class="col-md-2">Address Street</label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" id="5" ng-model="$ctrl.currentStudent.address.street">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="6" class="col-md-2">Address City</label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" id="6" ng-model="$ctrl.currentStudent.address.city">
+            </div>
+        </div>
+        <a role="button" class="btn btn-default" ng-href="/">Back</a>
+        <button type="submit" class="btn btn-primary" ng-click="$ctrl.saveChanges()">
+            Save
+        </button>
+    </form>
+</div>

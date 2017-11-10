@@ -8,6 +8,11 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
 
+    <scm>
+        <url>https://github.com/roshane/cinglevue-demo</url>
+        <connection>scm:git:https://github.com/roshane/cinglevue-demo.git</connection>
+    </scm>
+
     <name>demo</name>
     <description>Demo project for Spring Boot</description>
 
@@ -67,6 +72,14 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
+                <configuration>
+                    <tagNameFormat>{project.version}</tagNameFormat>
+                </configuration>
             </plugin>
         </plugins>
     </build>
